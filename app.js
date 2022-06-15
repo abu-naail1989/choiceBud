@@ -13,6 +13,9 @@ let editFlag = false;
 let editID = "";
 // ****** EVENT LISTENERS **********
 form.addEventListener("submit", addItem);
+
+clearBtn.addEventListener("click", clearItems);
+
 // ****** FUNCTIONS **********
 function addItem(e) {
   e.preventDefault();
@@ -43,7 +46,7 @@ function addItem(e) {
     // append child (element-article) to the div wit class of grocery-list
     list.appendChild(element);
     // display alert
-    displayAlert(`${value} added to the lst`, "success");
+    displayAlert(`${value} added to the list`, "success");
 
     // show container( div with class of grocery-container) which has been hidden in css
     container.classList.add("show-container");
@@ -53,8 +56,6 @@ function addItem(e) {
     displayAlert("please enter value", "danger");
   }
 }
-
-// FUNCTIONS
 
 // display alert
 function displayAlert(text, action) {
@@ -68,6 +69,19 @@ setTimeout(function () {
   alert.classList.remove(`alert-${action}`);
 }, 3000);
 
+// clear items
+function clearItems() {
+  const addedItems = document.querySelectorAll(".grocery-item");
+
+  if (addedItems.length > 0) {
+    addedItems.forEach(function (item) {
+      list.removeChild(item);
+    });
+  }
+  container.classList.remove("show-container");
+  displayAlert("empty list", "danger");
+}
+
 // set back to default
 
 function setBackToDefault() {
@@ -76,6 +90,7 @@ function setBackToDefault() {
   editID = "";
   submitBtn.textContent = "submit";
 }
+
 // ****** LOCAL STORAGE **********
 
 // ****** SETUP ITEMS **********
