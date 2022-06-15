@@ -47,11 +47,14 @@ function addItem(e) {
 
     // show container( div with class of grocery-container) which has been hidden in css
     container.classList.add("show-container");
+    setBackToDefault();
   } else if (value && editFlag) {
   } else {
     displayAlert("please enter value", "danger");
   }
 }
+
+// FUNCTIONS
 
 // display alert
 function displayAlert(text, action) {
@@ -64,6 +67,15 @@ setTimeout(function () {
   alert.textContent = "";
   alert.classList.remove(`alert-${action}`);
 }, 3000);
+
+// set back to default
+
+function setBackToDefault() {
+  grocery.value = "";
+  editFlag = false;
+  editID = "";
+  submitBtn.textContent = "submit";
+}
 // ****** LOCAL STORAGE **********
 
 // ****** SETUP ITEMS **********
